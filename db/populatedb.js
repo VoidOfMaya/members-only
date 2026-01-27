@@ -1,19 +1,29 @@
 #! /usr/bin/env node
 
 const { Client } = require("pg");
+require('dotenv').config();
 
 const SQL = `
-
-CREATE TABLE IF NOT EXISTS usernames (
+CREATE TABLE IF NOT EXISTS member (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  username VARCHAR ( 255 )
+  first_name VARCHAR (24),
+  last_name VARCHAR (24),
+  username VARCHAR (24),
+  password VARCHAR ,
+  member_status BOOLEAN
 );
-
-INSERT INTO usernames (username) 
-VALUES
-  ('Bryan'),
-  ('Odin'),
-  ('Damon');
+CREATE TABLE IF NOT EXISTS message (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title VARCHAR (100),
+  posted_on TIMESTAMP,
+  content VARCHAR (255),
+  user_id INTEGER NOT NULL REFERENCES member(id)
+);
+CREATE TABLE IF NOT EXISTS session (
+  sid VARCHAR NOT NULL PRIMARY KEY,
+  sess JSON NOT NULL,
+  expire TIMESTAMP NOT NULL
+);
 `;
 
 async function main() {
