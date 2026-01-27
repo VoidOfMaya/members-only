@@ -15,40 +15,40 @@ is accessible to users only after they sign up and log in!
     - has session(sid, sess, expire)
     - QUERIES(addMemeber, addMsg, activateMembership, getMember, getAllMessages, deleteMsg)
 - server:
+    #### sign up
     - action => on load
     - view- sign-up form(fName, lName, username, password, confirmPassword, setAsAdmin) *validate
     - router- GET/sign-up 
     - router- POST/sign-up *validate sanitize 
     - controller-  confirmPasswod and register member use addMember query * bcrypt password 
     - controllerRes- GET/activate-membership
-
+    #### activate membership
     - action => on register member_status: false =>  
     - view- activateMembership with input named passcode *validate
     - router- GET/activate-membership
     - router- POST/membership-stat *validate sanitize
     - controller- setMembershipStat use activateMembership query
     - controllerRes- GET/log-in
-
+    #### log in
     - action => prompt login
     - view- login-page(username, password) *validate
     - router- GET/log-in
     - router- POST/authenticate *validate sanitize 
     - controller- compareCreds(user) use getMember query *set session with passport.js 
     - controllerRes- GET/homepage
-
+    #### display home page
     - action => display member messages
     - view- homepage
     - router- GET/homepage
     - controller- checkMembership if true return(message, author, date) else return(null, message, date)
     - controllerRes- GET/homepager {note to self figure out how to censor the messages from the server without reaching the front end}
-
-
+    #### post new message
     - action => postMessage
     - view- add-message(title, content) *validate
     - router POST/msg
     - controller- ismember? => createNewMsg use addMsg query
     - controllerRes- GET/homepage
-
+    #### delete message
     - action => delete a message
     - view- partial{deletebtn}
     - router- DELETE/msg
