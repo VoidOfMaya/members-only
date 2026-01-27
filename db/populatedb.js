@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS member (
   last_name VARCHAR (24),
   username VARCHAR (24),
   password VARCHAR ,
-  member_status BOOLEAN
+  member_status BOOLEAN DEFAULT false,
+  is_admin BOOLEAN DEFAULT false
 );
 CREATE TABLE IF NOT EXISTS message (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
