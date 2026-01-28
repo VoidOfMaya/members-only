@@ -9,11 +9,11 @@ viewing of the message board for guests  but posting and additional info relatin
 is accessible to users only after they sign up and log in!
 
 ### mvp goals/working mental model:
-- [ ]database:
+- [X]database:
     - [X]has members(id, first_name,last_name, username, password, member_status, is_admin)
     - [X]has  message(id, title, posted_on, content, user_id)
     - [X]has session(sid, sess, expire)
-    - [ ]QUERIES(msg:{ addMsg, getAllMessages, deleteMsg(adminPrev true?)} 
+    - [X]QUERIES(msg:{ addMsg, getAllMessagesForMembers, getAllMessagesForNonMembers, deleteMsg(adminPrev true?)} 
                  members{addMemeber, activateMembership, getMember, toggleAdminMod})
 - [ ]server:
     #### [ ]sign up
