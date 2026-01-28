@@ -2,7 +2,7 @@
 
 //code:
 async function getHome(req, res){
-    res.render('index');
+    res.render('sign-up');
 }
 
 module.exports = {
