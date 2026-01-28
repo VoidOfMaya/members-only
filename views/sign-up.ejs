@@ -10,24 +10,42 @@
 <body>
     <header>sign-up</header>
     <section>
-        <form class="sign-up-form" method="post" action="/sign-up">
+        <h5 style="justify-self: center;">all fields are required!</h5>
+        <form class="sign-up-form" id="sign-up-form" method="post" action="/sign-up">
             <label for="firstName">First name</label>
-            <input name="firstName" type="text">
+            <input name="firstName" type="text" minlength="3" maxlength="12" required>
 
             <label for="lastName">Last name</label>
-            <input name="lastName" type="text">
+            <input name="lastName" type="text" minlength="3" maxlength="12" required>
 
             <label for="username">Username:</label>
-            <input name="username" type="text">
+            <input name="username" type="text" minlength="4" maxlength="24"required>
 
             <label for="password">Password</label>
-            <input name="password" type="password">
+            <input id="sign-up-password"  name="password" type="password" minlength="5" maxlength="30" required>
 
             <label for="confirmPassword">Confirm password</label>
-            <input name="confirmPassword" type="password">
+            <input id="sign-up-confirm-password" name="confirmPassword" type="password" required>
             <button type="submit">register</button>
             <button type="button" >cancel</button>
         </form>
+        <script>
+            const form = document.getElementById("sign-up-form");
+            const pass = document.getElementById("sign-up-password");
+            const confirmPass = document.getElementById("sign-up-confirm-password");
+
+            form.addEventListener('submit',(e)=>{
+                if(pass !== confirmPass){
+                    console.log(pass.value)
+                    console.log(confirmPass.value)
+                    e.preventDefault();
+                    alert('Passwords do not match!');
+                    confirmPass.focuse();
+                }
+                console.log(pass.value())
+                console.log(confirmPass.value())
+            })
+        </script>
     </section>
 </body>
 </html>

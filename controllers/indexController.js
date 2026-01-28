@@ -1,5 +1,5 @@
-//import data
-
+//import tools
+const postgres = require('../db/queries.js');
 //code:
 async function getHomePage(res, res) {
     res.render('homepage')
