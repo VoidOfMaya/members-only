@@ -19,7 +19,7 @@ is accessible to users only after they sign up and log in!
     #### [ ]sign up
     - [X]action => on load
     - [X]view- sign-up form(fName, lName, username, password, confirmPassword) *validate with validation-api
-    - [ ]router- GET/sign-up 
+    - [X]router- GET/sign-up 
     - [ ]router- POST/sign-up *validate sanitize 
     - [ ]controller-  confirmPasswod and register member use addMember query * bcrypt password 
     - [ ]controllerRes- GET/activate-membership

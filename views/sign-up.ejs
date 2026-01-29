@@ -26,25 +26,36 @@
 
             <label for="confirmPassword">Confirm password</label>
             <input id="sign-up-confirm-password" name="confirmPassword" type="password" required>
-            <button type="submit">register</button>
+            <button type="submit" id="register-button">register</button>
             <button type="button" >cancel</button>
         </form>
         <script>
             const form = document.getElementById("sign-up-form");
             const pass = document.getElementById("sign-up-password");
             const confirmPass = document.getElementById("sign-up-confirm-password");
+            const submitFormBtn = document.getElementById('register-button');
 
-            form.addEventListener('submit',(e)=>{
-                if(pass !== confirmPass){
-                    console.log(pass.value)
-                    console.log(confirmPass.value)
-                    e.preventDefault();
-                    alert('Passwords do not match!');
-                    confirmPass.focuse();
-                }
-                console.log(pass.value())
-                console.log(confirmPass.value())
+            submitFormBtn.disabled = true;
+            let passOne;
+            let passTwo;
+
+            confirmPass.style.outline= '1px solid red'
+
+            pass.addEventListener('input',(e)=>{
+                passOne =e.target.value
             })
+            confirmPass.addEventListener('input',(e)=>{
+                
+                passTwo =e.target.value      
+                if(passOne ===passTwo){
+                    confirmPass.style.outline= '1px solid green'
+                    submitFormBtn.disabled = false
+                    return
+                }
+            })
+            
+            
+
         </script>
     </section>
 </body>
