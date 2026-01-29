@@ -14,11 +14,12 @@ const registery = [
                     .isLength({min: 3, max: 12}).withMessage('range must be between 3- 12 characters'),
 
     body('username').trim().notEmpty().withMessage('username is required')
-                    .isAlphanumeric().withMessage('username can only contain letters and numbers'),
+                    .isAlphanumeric().withMessage('username can only contain letters and numbers')
+                    .isLength({min:4, max: 20}).withMessage('username out of range!'),
 
     body('password').trim().notEmpty().withMessage('password is required')
                     .isLength({min:8}).withMessage('password must atleast be 8 letters')
-                    .matches(/^[A-Za-z0-9]+$/).withMessage('can only contain letters, numbers, hyphens, apostrophes'),
+                    .matches(/^[A-Za-z0-9\s.,!?@#$_-]+$/).withMessage('can only contain letters'),
     
     body('confirmPassword').trim().notEmpty().withMessage('password is required')
                            .custom((password, {req}) =>{
@@ -28,6 +29,15 @@ const registery = [
                                         }
                                         return true;
                                     })]
+const logIn =[
+    body('username').trim().notEmpty().withMessage('username is required')
+                    .isAlphanumeric().withMessage('username can only contain letters and numbers')
+                    .isLength({min:4, max: 20}).withMessage('username out of range!'),
+
+    body('password').trim().notEmpty().withMessage('password is required')
+                    .isLength({min:8}).withMessage('password must atleast be 8 letters')
+                    .matches(/^[A-Za-z0-9\s.,!?@#$_-]+$/).withMessage('can only contain letters, numbers, hyphens, apostrophes')]
 module.exports={
     registery,
+    logIn,
 }

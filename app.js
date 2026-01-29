@@ -1,22 +1,23 @@
 //tools
 require('dotenv').config();
 const express = require('express');
-const{body, validationResult} =  require('express-validator');
 const path = require('node:path');
+const passport = require('passport')
+
 //routing
+const {setupPassport , startSession} = require('./authorization/authMiddleware.js');
 const indexRouter = require ('./routes/indexRouter.js')
 const authRouter = require('./authorization/authRouters.js')
 const {main} = require('./db/populatedb.js')
 
+//seed base db
+main();
 
-//server setup
+//=========> server setup <==========
 const app = express(()=>{
     console.log('booting server')
 });
-//seed base db
-main();
-//ejs setup 
-
+//=========> generic asset and ejs setup <==========
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -24,13 +25,26 @@ app.set('view engine', 'ejs');
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
 
+//==========> middleWare and setup <==========
 
-//middleware setup
 //parse form data to a request body
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+//setting up passport
+
+startSession(app);
+
+
+setupPassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
 //router setup
-app.use('/', indexRouter)
-app.use('/auth',authRouter)
+
+app.use('/auth',authRouter);
+app.use('/', indexRouter);
+
 
 //error handeling
 app.use((req, res)=>{

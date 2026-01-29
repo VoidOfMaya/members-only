@@ -1,15 +1,19 @@
 const {Router}= require('express');
-const validate = require('../validations/validate.js')
-const action= require('./authControllers.js')
-const midWare = require('./authMiddleware.js')
-
+const validate = require('../validations/validate.js');
+const action= require('./authControllers.js');
+const passport = require("passport");
 const authRouter = Router();
 
 //setting up passport and rsession
-midWare.setupPassport();
-midWare.startSession(authRouter);
+authRouter.post('/sign-up',
+    validate.registery, 
+    action.registerUser);
 
-authRouter.post('/sign-up',validate.registery, action.registerUser);
+authRouter.post('/log-in',
+    validate.logIn,
+    passport.authenticate('local',{successRedirect: '/', failureRedirect: '/'})
+);
+
 
 
 module.exports= authRouter

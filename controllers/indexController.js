@@ -14,7 +14,11 @@ async function getHomePage(res, res) {
 async function getRegisterPage(req, res){
     res.render('sign-up');
 }
+async function getLogInPage(req, res) {
+    res.render('log-in');
+}
 module.exports = {
     getRegisterPage,
     getHomePage,
+    getLogInPage,
 }

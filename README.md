@@ -20,9 +20,17 @@ is accessible to users only after they sign up and log in!
     - [X]action => on load
     - [X]view- sign-up form(fName, lName, username, password, confirmPassword) *validate with validation-api
     - [X]router- GET/sign-up 
-    - [X]router- POST/sign-up *validate sanitize 
-    - [ ]controller-  confirmPasswod and register member use addMember query * bcrypt password 
-    - [ ]controllerRes- GET/activate-membership
+    - [X]router- POST/auth/sign-up *validate sanitize 
+    - [X]controller-  confirmPasswod and register member use addMember query * bcrypt password 
+    - [ ]controllerRes- GET/Log-in
+    #### log in
+    - [ ]action => prompt login
+    - [ ]view- login-page(username, password) *validate  with validation-api
+    - [ ]router- GET/log-in
+    - [ ]router- POST/authenticate *validate sanitize 
+    - [ ]controllerRes -auth/activate-membership
+    - [ ]controller- compareCreds(user) use getMember query *set session with passport.js 
+    - [ ]controllerRes- GET/homepage
     #### [ ]activate membership
     - [ ]action => on register member_status: false =>  
     - [ ]view- activateMembership with input named passcode *validate  with validation-api
@@ -30,13 +38,7 @@ is accessible to users only after they sign up and log in!
     - [ ]router- POST/membership-stat *validate sanitize
     - [ ]controller- setMembershipStat use activateMembership query
     - [ ]controllerRes- GET/log-in
-    #### log in
-    - [ ]action => prompt login
-    - [ ]view- login-page(username, password) *validate  with validation-api
-    - [ ]router- GET/log-in
-    - [ ]router- POST/authenticate *validate sanitize 
-    - [ ]controller- compareCreds(user) use getMember query *set session with passport.js 
-    - [ ]controllerRes- GET/homepage
+
     #### [ ]display home page
     - [ ]action => display member messages
     - [ ]view- homepage
