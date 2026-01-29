@@ -8,8 +8,9 @@ const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 //code:
-async function getHomePage(res, res) {
-    res.render('homepage')
+async function getHomePage(req, res) {
+    console.log(req.user)
+    res.render('homepage',{user: req.user})
 }
 async function getRegisterPage(req, res){
     res.render('sign-up');

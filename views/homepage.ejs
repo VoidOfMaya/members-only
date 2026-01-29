@@ -8,13 +8,26 @@
     <title>Document</title>
 </head>
 <body>
+    <% if(user){%>
+        <h1>welcome back <%= user.first_name %></h1>
+    <% } else { %>
+        <h1> welcom guest, please log in</h1>
+    <%}%>
+    
     <section class="message-board">
        <header>Message board</header>        
     </section>
 
     <section class="log">
-        <a href="/sign-up">register</a>
-        <a href="/log-in">Log in</a>
+        <% if(user){%>
+         <% if(user.member_status === false ){ %>
+            <a href="/auth/activate-membership">activate membership</a>
+            <a href="/auth/logout">Log out</a>
+         <% } %>
+        <% } else { %>
+            <a href="/auth/logout">Log in</a>                
+        <%}%>
+
     </section>
 </body>
 </html>

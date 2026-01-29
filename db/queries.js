@@ -93,7 +93,14 @@ async function activateMembership(id) {
 //getMember: takes user.username as an argument
 async function getMember(username) {
   const {rows} = await pool.query(`      
-  SELECT * FROM member 
+  SELECT 
+  first_name,    
+  last_name,    
+  username,
+  member_status,
+  is_admin
+
+  FROM member 
   WHERE username = $1
     `,[username]);
   return rows[0];

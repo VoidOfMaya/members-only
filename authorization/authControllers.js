@@ -43,8 +43,29 @@ async function login(req, res) {
     }
     console.log(req.body);
 }
+async function logout(req, res) {
+    req.logout(err => {
+        if(err){
+            console.lofg(`passport logout error: ${err}`);
+            return
+        };
+        req.session.destroy(err => {
+        if(err){
+            console.lofg(`session destroy error: ${err}`);
+            return
+        };
+        res.clearCookie('connect.sid');
+        res.redirect('/');
+        });
+    });
+}
+async function activateMemberShip(req, res) {
+    
+}
 
 module.exports={
     registerUser,
-    login
+    login,
+    logout,
+    activateMemberShip,
 }
