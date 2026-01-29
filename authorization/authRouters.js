@@ -13,7 +13,7 @@ authRouter.post('/log-in',
     validate.logIn,
     passport.authenticate('local',{successRedirect: '/', failureRedirect: '/'})
 );
-authRouter.get('/logout', action.logout)
+authRouter.get('/log-out', action.logout)
 authRouter.post('/activate-membership',action.activateMemberShip);
 
 
