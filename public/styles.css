@@ -9,3 +9,12 @@
     justify-self: center;
 
 }
+
+.invalid-input{
+    outline: 1px solid red;
+    outline-offset: 1px;
+}
+.valid-input{
+    outline: 1px solid green;
+    outline-offset: 1px;
+}
