@@ -14,11 +14,11 @@ const registery = [
                     .isLength({min: 3, max: 12}).withMessage('range must be between 3- 12 characters'),
 
     body('username').trim().notEmpty().withMessage('username is required')
-                    .isAlphanumeric().withMessage('username can only vontain letters and numbers'),
+                    .isAlphanumeric().withMessage('username can only contain letters and numbers'),
 
     body('password').trim().notEmpty().withMessage('password is required')
-                    .isLength({min:4}).withMessage('password must atleast be 4 letters')
-                    .matches(/^[A-Za-z0-9]+$/).withMessage('can only contain letters, numbers,spaces, hyphens, apostrophes'),
+                    .isLength({min:8}).withMessage('password must atleast be 4 letters')
+                    .matches(/^[A-Za-z0-9]+$/).withMessage('can only contain letters, numbers, hyphens, apostrophes'),
     
     body('confirmPassword').trim().notEmpty().withMessage('password is required')
                            .custom((password, {req}) =>{

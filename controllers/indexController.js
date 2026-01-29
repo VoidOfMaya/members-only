@@ -1,4 +1,5 @@
 //import tools
+const {matchedData, validationResult} = require('express-validator');
 const postgres = require('../db/queries.js');
 //code:
 async function getHomePage(res, res) {
@@ -9,7 +10,14 @@ async function getRegisterPage(req, res){
 }
 
 async function registerUser(req, res) {
-    console.log(req.body);
+    
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        console.log({errors: errors.array()})
+        return res.status(400).json({errors: errors.array()});
+    }
+    const  data = matchedData(req);
+    console.log(data);
     res.redirect('/');
 }
 
