@@ -17,7 +17,7 @@ const registery = [
                     .isAlphanumeric().withMessage('username can only contain letters and numbers'),
 
     body('password').trim().notEmpty().withMessage('password is required')
-                    .isLength({min:8}).withMessage('password must atleast be 4 letters')
+                    .isLength({min:8}).withMessage('password must atleast be 8 letters')
                     .matches(/^[A-Za-z0-9]+$/).withMessage('can only contain letters, numbers, hyphens, apostrophes'),
     
     body('confirmPassword').trim().notEmpty().withMessage('password is required')

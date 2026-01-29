@@ -5,6 +5,7 @@ const{body, validationResult} =  require('express-validator');
 const path = require('node:path');
 //routing
 const indexRouter = require ('./routes/indexRouter.js')
+const authRouter = require('./authorization/authRouters.js')
 const {main} = require('./db/populatedb.js')
 
 
@@ -29,6 +30,7 @@ app.use(express.static(assetsPath));
 app.use(express.urlencoded({extended: true}))
 //router setup
 app.use('/', indexRouter)
+app.use('/auth',authRouter)
 
 //error handeling
 app.use((req, res)=>{

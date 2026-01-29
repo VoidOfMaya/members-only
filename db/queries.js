@@ -99,6 +99,14 @@ async function getMember(username) {
   return rows[0];
   
 };
+async function getMemberById(id) {
+  const {rows} = await pool.query(`      
+  SELECT * FROM member 
+  WHERE id = $1
+    `,[id]);
+  return rows[0];
+  
+};
 //toggleAdminMod: takes user.id as an argument
 async function toggleAdminMod(id) {
   await pool.query(`
@@ -118,6 +126,7 @@ module.exports = {
   addMember,
   activateMembership,
   getMember,
+  getMemberById,
   toggleAdminMod,
 
 };
