@@ -21,7 +21,7 @@
     <section class="log">
         <% if(user){%>
          <% if(user.member_status === false ){ %>
-            <a href="/auth/activate-membership">activate membership</a>
+            <button id="membership-btn">activate membership</button>
             <a href="/auth/log-out">Log out</a>
          <% } %>
         <% } else { %>
@@ -30,5 +30,26 @@
         <%}%>
 
     </section>
+    <dialog id="membership-dialog">
+        <form method="POST" action="/auth/activate-member">
+            <label for="memberCode">activation code: </label>
+            <button> activate membership</button>
+            <button type="button" id="exit-dialog">cancel</button>
+        </form>
+    </dialog>
+
+    <script>
+        const openDialogBtn = document.getElementById('membership-btn');
+        const dialog = document.getElementById('membership-dialog');
+        const exitDialogBtn = document.getElementById('exit-dialog');
+
+        openDialogBtn.addEventListener('click',()=>{
+            dialog.showModal();
+        })
+        exitDialogBtn.addEventListener('click',()=>{
+            dialog.close();
+        })
+
+    </script>
 </body>
 </html>
