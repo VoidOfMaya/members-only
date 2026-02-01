@@ -46,10 +46,10 @@
     - [X]controller- ismember? => createNewMsg use addMsg query
     - [X]controllerRes- GET/homepage
     #### [ ]delete message
-    - [ ]action => delete a message
+    - [X]action => delete a message
     - [X]view- partial{deletebtn}
-    - [ ]router- DELETE/msg
-    - [ ]controller-  isAdmin? use deleteMsg query : throw err(unable to preform action,no admin privilages)
+    - [X]router- DELETE/msg
+    - [X]controller-  isAdmin? use deleteMsg query : throw err(unable to preform action,no admin privilages)
     ### [ ]Enable Admin
     - [X]action => click on member name to view details
     - [X]view- any member set as a button for a stat dialog + button to become admin

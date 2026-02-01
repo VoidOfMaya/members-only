@@ -40,7 +40,8 @@ async function addMsg(userId, message) {
 //for members only
 async function getAllMessagesForMembers() {
   const {rows} = await pool.query(`
-    SELECT msg.title, 
+    SELECT msg.id,
+           msg.title, 
            msg.content, 
            msg.posted_on, 
            mbr.username

@@ -21,6 +21,7 @@
                 <li>no messages currently</li>
             <% } else{ %>
                 <% messages.forEach(msg =>{ %>
+                    <% console.log(msg) %>
                     <li class="msg-card">
                         <div><%= msg.username? msg.username : '----' %></div>
                         <div><%= msg.title?  msg.title : 'unknown'%></div>
@@ -28,8 +29,9 @@
                         <div><%= msg.posted_on?  msg.posted_on : "" %></div>
                         <% if(user && user.member_status && user.is_admin){ %>
                         <div class="msg-delete">
-                            <form>
-                                <button>delete</button>
+                            <form method="post" action="/msg/delete">
+                                <input type="hidden" name="msgId" value="<%= msg.id %>">
+                                <button >delete</button>
                             </form>
                         </div>
                         <% } %>

@@ -49,9 +49,15 @@ const messageSend = [
     body('content').trim().notEmpty().withMessage('field is required')
     .isLength({max: 250, min: 1}).withMessage('message out of bounds, message must be between 1 -250 chaarecters')
 ];
+const msgId = [
+    body('msgId').trim().notEmpty().withMessage('field is required')
+    .isNumeric().withMessage('field can only be a number')
+
+];
 module.exports={
     registery,
     logIn,
     activateMembership,
     messageSend,
+    msgId
 }

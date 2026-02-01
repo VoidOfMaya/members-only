@@ -15,7 +15,7 @@ async function sendMsg(req, res) {
         res.redirect('/');
 
     }
-    data = matchedData(req);
+    const data = matchedData(req);
     try{
         //expects user.id and message{title,  content}
         await postgres.addMsg(req.user.id, data);
@@ -25,12 +25,19 @@ async function sendMsg(req, res) {
     res.redirect('/')
 }
 async function deleteMsg(req, res) {
-    if(req.user && req.user.is_admin){
-        console.log('delteMsg controller: access granted');
-    }else{
-        console.log('delteMsg controller: access denied')
-    }
 
+    if(!req.user && !req.user.member_status && !req.user.is_admin){
+        console.log('delteMsg controller: access denied');
+        res.redirect('/');    
+    }
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        console.lod(errors)
+        res.redirect('/');
+    }
+    const msgId = Number(matchedData(req))
+    console.log(msgId);
+    //await postgres.deleteMsg(msgId);
     res.redirect('/');
 }
 module.exports={

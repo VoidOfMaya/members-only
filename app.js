@@ -44,7 +44,7 @@ app.use(passport.session());
 //router setup
 
 app.use('/auth',authRouter);
-app.use('/msg',msgRouter)
+app.use('/msg',msgRouter);
 app.use('/', indexRouter);
 
 

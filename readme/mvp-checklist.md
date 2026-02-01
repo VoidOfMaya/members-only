@@ -30,12 +30,12 @@ this page is intended for orgenizing task by layer!
   - `GET /sign-up`
   - `GET /log-in`
   - `GET /homepage`
-- [ ] POST routes & controllers:
+- [X] POST routes & controllers:
   - `/auth/sign-up` → register member
   - `/auth/log-in` → login & set session
   - `/auth/log-out` → logout & destroy session
   - `/msg` → post new message
-  - `/msg/:id` → delete message (admin only)
+  - `/msg/delete` → delete message (admin only)
   - `/membership-stat` → activate membership
   - `/adminPrev` → toggle admin status
 
