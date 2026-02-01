@@ -1,6 +1,6 @@
 //tools
 const {Router}= require('express');
-const action = require('../controllers/indexController.js')
+const action = require('./indexController.js')
 
 //routers
 const indexRouter =Router();

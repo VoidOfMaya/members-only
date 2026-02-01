@@ -10,11 +10,11 @@ is accessible to users only after they sign up and log in!
 
 # ______________________________________________
 
-- [MVP Dev Tasklist by Layer](./mvp-checklist.md)
+- [MVP Dev Tasklist by Layer](./readme/app-flow.md)
   a layered breakdown of development tasks, and progress tracking!
   for a faster and streamlined development process
 
-- [Application Flow / Mental Modal](./app-flow.md)
+- [Application Flow / Mental Modal](./readme/app-flow.md)
   same tasks as above but ordered based on action scope
   for cleaner and better grasp of webapp structure 
 

@@ -6,7 +6,7 @@ const passport = require('passport')
 
 //routing
 const {setupPassport , startSession} = require('./authorization/authMiddleware.js');
-const indexRouter = require ('./routes/indexRouter.js')
+const indexRouter = require ('./index/indexRouter.js')
 const authRouter = require('./authorization/authRouters.js')
 const {main} = require('./db/populatedb.js')
 
