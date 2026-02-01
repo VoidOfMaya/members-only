@@ -27,16 +27,15 @@
     - [X]controller- logout *clears user data /remove cookie / wipe session table
     - [X]controllRes- GET/homepage
     #### [ ]activate membership
-    - [ ]action => when logged in on clicking activate membership =>  
-    - [ ]view- activateMembership with input named passcode *validate  with validation-api
-    - [ ]router- GET/activate-membership
-    - [ ]router- POST/membership-stat *validate sanitize
-    - [ ]controller- setMembershipStat use activateMembership query
-    - [ ]controllerRes- GET/log-in
+    - [X]action => when logged in on clicking activate membership =>  
+    - [X]view- activateMembership with input named membercode *validate  with validation-api
+    - [X]router- POST/membership-stat *validate sanitize
+    - [X]controller- setMembershipStat use activateMembership query
+    - [X]controllerRes- GET/homepage
 
     #### [ ]display home page
     - [ ]action => display member messages
-    - [ ]view- homepage
+    - [X]view- homepage
     - [X]router- GET/homepage
     - [ ]controller- checkMembership if true return(message, author, date) else return(null, message, date)
     - [ ]controllerRes- GET/homepager {note to self figure out how to censor the messages from the server without reaching the front end}

@@ -59,13 +59,26 @@ async function logout(req, res) {
         });
     });
 }
-async function activateMemberShip(req, res) {
-    
+async function activateMember(req, res) {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        console.log({errors: errors.array()})
+        return res.status(400).json({errors: errors.array()});
+    }
+    const data = matchedData(req);
+    try{
+        await postgres.activateMembership(data.memberCode);
+        console.log('membership activated at id: ' + data.memberCode);
+    }catch(err){
+        console.log('membership_activation failed!')
+    }
+    //console.log(data);
+    res.redirect('/');
 }
 
 module.exports={
     registerUser,
     login,
     logout,
-    activateMemberShip,
+    activateMember,
 }

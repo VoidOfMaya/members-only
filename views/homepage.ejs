@@ -32,7 +32,9 @@
     </section>
     <dialog id="membership-dialog">
         <form method="POST" action="/auth/activate-member">
+
             <label for="memberCode">activation code: </label>
+            <input type="hidden" name="memberCode" value="<%= user.id %>">
             <button> activate membership</button>
             <button type="button" id="exit-dialog">cancel</button>
         </form>

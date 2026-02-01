@@ -7,14 +7,19 @@ const authRouter = Router();
 //setting up passport and rsession
 authRouter.post('/sign-up',
     validate.registery, 
-    action.registerUser);
+    action.registerUser
+);
 
 authRouter.post('/log-in',
     validate.logIn,
     passport.authenticate('local',{successRedirect: '/', failureRedirect: '/'})
 );
-authRouter.get('/log-out', action.logout)
-authRouter.post('/activate-membership',action.activateMemberShip);
+authRouter.get('/log-out', action.logout);
+
+authRouter.post('/activate-member',
+    validate.activateMembership, 
+    action.activateMember
+);
 
 
 

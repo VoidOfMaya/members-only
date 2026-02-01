@@ -37,7 +37,12 @@ const logIn =[
     body('password').trim().notEmpty().withMessage('password is required')
                     .isLength({min:8}).withMessage('password must atleast be 8 letters')
                     .matches(/^[A-Za-z0-9\s.,!?@#$_-]+$/).withMessage('can only contain letters, numbers, hyphens, apostrophes')]
+const activateMembership =[
+    body('memberCode').trim().notEmpty().withMessage('this field is required!')
+    .isNumeric().withMessage('field can only be a number')
+]
 module.exports={
     registery,
     logIn,
+    activateMembership,
 }
