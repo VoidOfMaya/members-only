@@ -2,6 +2,11 @@ const { validationResult, matchedData } = require('express-validator')
 const postgres = require('../db/queries.js')
 
 async function sendMsg(req, res) {
+
+    if(!req.user){
+        console.log('access denied');
+        return
+    }
     console.log('message access')
 
     const errors = validationResult(req);
@@ -19,7 +24,16 @@ async function sendMsg(req, res) {
     }
     res.redirect('/')
 }
+async function deleteMsg(req, res) {
+    if(req.user && req.user.is_admin){
+        console.log('delteMsg controller: access granted');
+    }else{
+        console.log('delteMsg controller: access denied')
+    }
 
+    res.redirect('/');
+}
 module.exports={
     sendMsg,
+    deleteMsg,
 }

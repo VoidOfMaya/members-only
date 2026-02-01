@@ -21,18 +21,24 @@
                 <li>no messages currently</li>
             <% } else{ %>
                 <% messages.forEach(msg =>{ %>
-                    <li>
-                        <div><%= msg.username %></div>
-                        <div><%= msg.title %></div>
+                    <li class="msg-card">
+                        <div><%= msg.username? msg.username : '----' %></div>
+                        <div><%= msg.title?  msg.title : 'unknown'%></div>
                         <div><%= msg.content %></div>
-                        <div><%= msg.posted_on %></div>
+                        <div><%= msg.posted_on?  msg.posted_on : "" %></div>
+                        <% if(user && user.member_status && user.is_admin){ %>
+                        <div class="msg-delete">
+                            <form>
+                                <button>delete</button>
+                            </form>
+                        </div>
+                        <% } %>
                     </li>
             
                 <% }) %>
             <% } %>
         </ul>
     </section>
-
     <section class="log">
         <% if(user){%>
          <% if(user.member_status === false ){ %>
@@ -45,13 +51,17 @@
         <%}%>
 
     </section>
+    <% if(user){ %>
     <section id="add-msg">
         <form method="post" action="/msg/send">
             <input type="text" name="title" placeholder="title goes here" maxlength="15" minlength="2" required >
             <textarea name="content" placeholder="your message here ..." maxlength="250" minlength="1"required></textarea>
             <button>send</button>
         </form>
+        <a href="/auth/log-out">Log out</a>
     </section>
+    <% } %>
+    <% if(user){ %>
     <dialog id="membership-dialog">
         <form method="POST" action="/auth/activate-member">
 
@@ -75,5 +85,13 @@
         })
 
     </script>
+    <% } %>
+    <% if(user && user.member_status){ %>
+        <form method="post" action="/auth/acticate-admin">
+            <button>
+                <%= !user.is_admin ? 'turn admin mode on' : 'turn admin mode off' %>
+            </button>
+        </form>
+    <% } %>
 </body>
 </html>

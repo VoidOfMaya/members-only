@@ -20,6 +20,7 @@ authRouter.post('/activate-member',
     validate.activateMembership, 
     action.activateMember
 );
+authRouter.post('/acticate-admin', action.becomeAdmin);
 
 
 

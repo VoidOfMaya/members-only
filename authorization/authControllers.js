@@ -75,10 +75,26 @@ async function activateMember(req, res) {
     //console.log(data);
     res.redirect('/');
 }
+async function becomeAdmin(req, res) {
+
+    if(req.user){
+        try{
+            await postgres.toggleAdminMod(req.user.id);
+        }catch(err){
+            console.log(err);
+        }        
+    }else{
+        console.log('user not found');
+    }
+
+
+    res.redirect('/');
+}
 
 module.exports={
     registerUser,
     login,
     logout,
     activateMember,
+    becomeAdmin
 }

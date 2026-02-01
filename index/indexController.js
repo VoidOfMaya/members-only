@@ -14,8 +14,7 @@ async function getHomePage(req, res) {
     
     //manages information access to messages by access lvl
     const data = await msgWare.getMsgsByAccessLvl(req.user);
-
-    console.log(data)
+    console.log(req.user)
     res.render('homepage',{user: req.user, messages: data});
 }
 async function getRegisterPage(req, res){

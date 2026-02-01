@@ -34,17 +34,17 @@
     - [X]controllerRes- GET/homepage
 
     #### [ ]display home page
-    - [ ]action => display member messages
+    - [X]action => display member messages
     - [X]view- homepage
     - [X]router- GET/homepage
-    - [ ]controller- checkMembership if true return(message, author, date) else return(null, message, date)
-    - [ ]controllerRes- GET/homepager {note to self figure out how to censor the messages from the server without reaching the front end}
+    - [X]controller- checkMembership if true return(message, author, date) else return(null, message, date)
+    - [X]controllerRes- GET/homepager {note to self figure out how to censor the messages from the server without reaching the front end}
     #### [ ]post new message
-    - [ ]action => postMessage
-    - [ ]view- add-message(title, content) *validate  with validation-api
-    - [ ]router POST/msg
-    - [ ]controller- ismember? => createNewMsg use addMsg query
-    - [ ]controllerRes- GET/homepage
+    - [X]action => postMessage
+    - [X]view- add-message(title, content) *validate  with validation-api
+    - [X]router POST/msg
+    - [X]controller- ismember? => createNewMsg use addMsg query
+    - [X]controllerRes- GET/homepage
     #### [ ]delete message
     - [ ]action => delete a message
     - [ ]view- partial{deletebtn}
