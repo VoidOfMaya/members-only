@@ -17,9 +17,9 @@ this page is intended for orgenizing task by layer!
 ## 3️⃣ Views / Frontend Layer
 - [X] Sign-up form (HTML + validation feedback)
 - [X] Login page (HTML + validation feedback)
-- [ ] Homepage (message display, conditional for members vs guests)
-- [ ] Add message form (title + content)
-- [ ] Delete message button (for admins)
+- [X] Homepage (message display, conditional for members vs guests)
+- [X] Add message form (title + content)
+- [X] Delete message button (for admins)
 - [X] Logout link on homepage
 
 ## 4️⃣ Core Middleware / Server Layer
