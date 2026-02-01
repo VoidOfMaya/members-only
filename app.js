@@ -8,6 +8,7 @@ const passport = require('passport')
 const {setupPassport , startSession} = require('./authorization/authMiddleware.js');
 const indexRouter = require ('./index/indexRouter.js')
 const authRouter = require('./authorization/authRouters.js')
+const msgRouter = require('./messaging/messageRoute.js')
 const {main} = require('./db/populatedb.js')
 
 //seed base db
@@ -43,6 +44,7 @@ app.use(passport.session());
 //router setup
 
 app.use('/auth',authRouter);
+app.use('/msg',msgRouter)
 app.use('/', indexRouter);
 
 

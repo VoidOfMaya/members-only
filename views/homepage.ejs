@@ -15,7 +15,22 @@
     <%}%>
     
     <section class="message-board">
-       <header>Message board</header>        
+       <header>Message board</header>
+       <ul style="list-style: none;">
+            <% if(messages.length === 0){  %>
+                <li>no messages currently</li>
+            <% } else{ %>
+                <% messages.forEach(msg =>{ %>
+                    <li>
+                        <div><%= msg.username %></div>
+                        <div><%= msg.title %></div>
+                        <div><%= msg.content %></div>
+                        <div><%= msg.posted_on %></div>
+                    </li>
+            
+                <% }) %>
+            <% } %>
+        </ul>
     </section>
 
     <section class="log">
@@ -29,6 +44,13 @@
             <a href="/sign-up">register</a>                
         <%}%>
 
+    </section>
+    <section id="add-msg">
+        <form method="post" action="/msg/send">
+            <input type="text" name="title" placeholder="title goes here" maxlength="15" minlength="2" required >
+            <textarea name="content" placeholder="your message here ..." maxlength="250" minlength="1"required></textarea>
+            <button>send</button>
+        </form>
     </section>
     <dialog id="membership-dialog">
         <form method="POST" action="/auth/activate-member">

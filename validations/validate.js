@@ -41,8 +41,17 @@ const activateMembership =[
     body('memberCode').trim().notEmpty().withMessage('this field is required!')
     .isNumeric().withMessage('field can only be a number')
 ]
+const messageSend = [ 
+    body('title').trim().notEmpty().withMessage('field required')
+    .isLength({min: 2 , max: 15}).withMessage('title length out of bound, make sure its greater then 2 or smaller then 15 characters')
+    .matches(/^[a-zA-Z0-9 ]*$/).withMessage('title can only contain numbers and letters'),
+
+    body('content').trim().notEmpty().withMessage('field is required')
+    .isLength({max: 250, min: 1}).withMessage('message out of bounds, message must be between 1 -250 chaarecters')
+];
 module.exports={
     registery,
     logIn,
     activateMembership,
+    messageSend,
 }

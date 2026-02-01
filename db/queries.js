@@ -32,7 +32,7 @@ async function addMsg(userId, message) {
   await pool.query(`
     INSERT INTO
     message (title,          content,          user_id)
-    VALUES  ($1,             $2,               $3,     )`,
+    VALUES  ($1,             $2,               $3  )`,
             [message.title,  message.content,  userId]
   )
 }
@@ -56,7 +56,7 @@ async function getAllMessagesForNonMembers() {
   const {rows} = await pool.query(`
     SELECT title, 
            content, 
-           posted_on, 
+           posted_on 
 
     FROM message
     ORDER BY posted_on DESC
