@@ -95,13 +95,22 @@ a:hover{
     'content delete'
     'date delete';
 }
+#add-msg{
+    outline: 1px solid white;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100vw;
+    padding: 20px 0px 20px 0px;
+    background-color: rgb(1, 1, 15) ;    
+}
 .add-msg-form{
     min-width: 450px;
     display: grid;
-    grid-template: 1fr 1fr/ 2fr 1fr;
+    grid-template: 1fr 1fr/ 1fr 2fr 1fr 1fr;
     grid-template-areas:
-    'msg-title msg-send'
-    'msg-content msg-send'
+    '. msg-title msg-send .'
+    '. msg-content msg-send .'
     ;
 }
 .send-msg-btn{
