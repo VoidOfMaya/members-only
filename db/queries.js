@@ -56,8 +56,7 @@ async function getAllMessagesForMembers() {
 async function getAllMessagesForNonMembers() {
   const {rows} = await pool.query(`
     SELECT title, 
-           content, 
-           posted_on 
+           content
 
     FROM message
     ORDER BY posted_on DESC

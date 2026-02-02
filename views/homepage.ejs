@@ -3,97 +3,102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
     <title>Document</title>
 </head>
 <body>
-    <% if(user){%>
-        <h1>welcome back <%= user.first_name %></h1>
-    <% } else { %>
-        <h1> welcom guest, please log in</h1>
-    <%}%>
-    
-    <section class="message-board">
-       <header>Message board</header>
-       <ul style="list-style: none;">
-            <% if(messages.length === 0){  %>
-                <li>no messages currently</li>
-            <% } else{ %>
-                <% messages.forEach(msg =>{ %>
-                    <% console.log(msg) %>
-                    <li class="msg-card">
-                        <div><%= msg.username? msg.username : '----' %></div>
-                        <div><%= msg.title?  msg.title : 'unknown'%></div>
-                        <div><%= msg.content %></div>
-                        <div><%= msg.posted_on?  msg.posted_on : "" %></div>
-                        <% if(user && user.member_status && user.is_admin){ %>
-                        <div class="msg-delete">
-                            <form method="post" action="/msg/delete">
-                                <input type="hidden" name="msgId" value="<%= msg.id %>">
-                                <button >delete</button>
-                            </form>
-                        </div>
-                        <% } %>
-                    </li>
-            
-                <% }) %>
-            <% } %>
-        </ul>
-    </section>
-    <section class="log">
+
         <% if(user){%>
-         <% if(user.member_status === false ){ %>
-            <button id="membership-btn">activate membership</button>
-            <a href="/auth/log-out">Log out</a>
-         <% } %>
+            <h1>welcome back <%= user.first_name %></h1>
         <% } else { %>
-            <a href="/log-in">Log in</a> 
-            <a href="/sign-up">register</a>                
+            <h1> welcom guest, please log in</h1>
         <%}%>
+    <div class="main-container">        
+        <section class="message-board">
+        <header>Message board</header>
+        <ul style="list-style: none;">
+                <% console.log(messages) %>
+                <% if( messages === undefined || messages.length === 0){  %>
+                    <li>no messages currently</li>
+                <% } else{ %>
+                    <% messages.forEach(msg =>{ %>
+                        <% console.log(msg) %>
+                        <li class="msg-card">
+                            <div>
+                                @<div style="grid-area: user; color: rgb(164, 165, 168); display: inline;"><%= msg.username? msg.username : '----' %></div>
+                            </div>
+                            <div style="grid-area: title; color: rgb(164, 165, 168);"><%= msg.title?  msg.title : ''%></div>
+                            <p style="grid-area: content; font-size: 18px;"><%= msg.content %></p>
+                            <div style="grid-area: date; color: rgb(164, 165, 168); font-size: 13px;"><%= msg.posted_on?  msg.posted_on : "----" %></div>
+                            <% if(user && user.member_status && user.is_admin){ %>
+                            <div class="msg-delete" style="grid-area: delete;">
+                                <form method="post" action="/msg/delete">
+                                    <input type="hidden" name="msgId" value="<%= msg.id %>">
+                                    <button >delete</button>
+                                </form>
+                            </div>
+                            <% } %>
+                        </li>
+                
+                    <% }) %>
+                <% } %>
+            </ul>
+        </section>
+        <section class="log">
+            <% if(user){%>
+            <% if(user.member_status === false ){ %>
+                <button id="membership-btn">activate membership</button>
+                <a href="/auth/log-out">Log out</a>
+            <% } %>
+            <% } else { %>
+                <a href="/log-in">Log in</a> 
+                <a href="/sign-up">register</a>                
+            <%}%>
 
-    </section>
-    <% if(user){ %>
-    <section id="add-msg">
-        <form method="post" action="/msg/send">
-            <input type="text" name="title" placeholder="title goes here" maxlength="15" minlength="2" required >
-            <textarea name="content" placeholder="your message here ..." maxlength="250" minlength="1"required></textarea>
-            <button>send</button>
-        </form>
-        <a href="/auth/log-out">Log out</a>
-    </section>
-    <% } %>
-    <% if(user){ %>
-    <dialog id="membership-dialog">
-        <form method="POST" action="/auth/activate-member">
+        </section>
+        <% if(user){ %>
+        <section id="add-msg">
+            <form method="post" action="/msg/send" class="add-msg-form">
+                <input style="grid-area: msg-title;" type="text" name="title" placeholder="title goes here" maxlength="15" minlength="2" required >
+                <textarea style="grid-area: msg-content;" name="content" placeholder="your message here ..." maxlength="250" minlength="1"required></textarea>
+                <button class="send-msg-btn" style="grid-area: msg-send;">send</button>
+            </form>
+            <a href="/auth/log-out">Log out</a>
+        </section>
+        <% } %>
+        <% if(user){ %>
+        <dialog id="membership-dialog">
+            <form method="POST" action="/auth/activate-member">
 
-            <label for="memberCode">activation code: </label>
-            <input type="hidden" name="memberCode" value="<%= user.id %>">
-            <button> activate membership</button>
-            <button type="button" id="exit-dialog">cancel</button>
-        </form>
-    </dialog>
+                <label for="memberCode">activation code: </label>
+                <input type="hidden" name="memberCode" value="<%= user.id %>">
+                <button> activate membership</button>
+                <button type="button" id="exit-dialog">cancel</button>
+            </form>
+        </dialog>
 
-    <script>
-        const openDialogBtn = document.getElementById('membership-btn');
-        const dialog = document.getElementById('membership-dialog');
-        const exitDialogBtn = document.getElementById('exit-dialog');
+        <script>
+            const openDialogBtn = document.getElementById('membership-btn');
+            const dialog = document.getElementById('membership-dialog');
+            const exitDialogBtn = document.getElementById('exit-dialog');
 
-        openDialogBtn.addEventListener('click',()=>{
-            dialog.showModal();
-        })
-        exitDialogBtn.addEventListener('click',()=>{
-            dialog.close();
-        })
+            openDialogBtn.addEventListener('click',()=>{
+                dialog.showModal();
+            })
+            exitDialogBtn.addEventListener('click',()=>{
+                dialog.close();
+            })
 
-    </script>
-    <% } %>
-    <% if(user && user.member_status){ %>
-        <form method="post" action="/auth/acticate-admin">
-            <button>
-                <%= !user.is_admin ? 'turn admin mode on' : 'turn admin mode off' %>
-            </button>
-        </form>
-    <% } %>
+        </script>
+        <% } %>
+        <% if(user && user.member_status){ %>
+            <form method="post" action="/auth/acticate-admin">
+                <button>
+                    <%= !user.is_admin ? 'turn admin mode on' : 'turn admin mode off' %>
+                </button>
+            </form>
+        <% } %>
+    </div>
 </body>
 </html>

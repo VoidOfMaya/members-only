@@ -51,7 +51,7 @@ const messageSend = [
 ];
 const msgId = [
     body('msgId').trim().notEmpty().withMessage('field is required')
-    .isNumeric().withMessage('field can only be a number')
+    .isInt().withMessage('field can only be an integer')
 
 ];
 module.exports={
