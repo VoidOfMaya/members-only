@@ -12,7 +12,7 @@
         <% if(user){%>
             <h2 style="grid-area: nav-title;">welcome back <%= user.first_name %></h2>
         <% } else { %>
-            <h2 style="grid-area: nav-title;"> Guest mode</h2>
+            <h2 style="grid-area: nav-title; justify-self:start; margin-left: 10px;"> Guest mode</h2>
         <%}%>
         <button id="nav-btn" style="font-size: 24px;">☰</button>
         <nav aria-label="navigation" id="top-nav">

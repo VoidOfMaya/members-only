@@ -20,7 +20,11 @@ header{
     width: 100%;
     background-color: rgb(4, 5, 14) ; 
     display: grid;
-    grid-template: 1fr/ auto auto;
+    grid-template: 2fr/ 1fr;
+    grid-template-areas: 
+    'nav-title nav-options'
+
+    ;
 
 
 }
