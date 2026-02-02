@@ -20,7 +20,6 @@ async function registerUser(req, res) {
             //console.log(secureData);
             await postgres.addMember(secureData);
             console.log(`Registration success`);
-        res.redirect('/log-in');
     }catch(err){
         console.log(err)
         res.redirect('/')
