@@ -8,18 +8,18 @@
     <title>Document</title>
 </head>
 <body>
-    <header>sign-up</header>
-    <section class="signup-container">
+    <section class="login-container" style="align-content: center;">
+        <h3 style="justify-self: center;">Log in</h3>
         <h5 style="justify-self: center;">all fields are required!</h5>
         <form class="log-in-form" id="log-in-form" method="post" action="/auth/log-in">
-            <label for="username">Username:</label>
-            <input name="username" type="text" minlength="4" maxlength="24"required>
+            <label for="username" style="grid-area: U-label;">Username:</label>
+            <input style="grid-area: U-input;" name="username" type="text" minlength="4" maxlength="24"required>
 
-            <label for="password">Password</label>
-            <input id="sign-up-password"  name="password" type="password" minlength="5" maxlength="30" required>
+            <label for="password" style="grid-area: P-label;">Password</label>
+            <input style="grid-area: P-input;" id="sign-up-password"  name="password" type="password" minlength="5" maxlength="30" required>
 
-            <button type="submit" id="logi-n-button">Log in</button>
-            <a href="/" >cancel</a>
+            <button type="submit" id="logi-n-button" style="grid-area:log-in-btn;">Log in</button>
+            <a href="/"  style="width: 80%; grid-area: log-in-cancel;">cancel</a>
         </form>
         <script>
         </script>

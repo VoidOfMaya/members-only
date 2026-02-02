@@ -1,9 +1,28 @@
+html{
+    background: RGB(1, 1, 15);
+    background: linear-gradient(182deg,rgba(1, 1, 15, 1) 0%, rgba(4, 6, 14, 1) 100%);
+    height: 100%;
+}
 body{
-    background: rgb(4, 6, 14);
+    margin: 0px;
+    margin-top: 60px;
     color: white;
     justify-items: center;
     align-items: center;
     min-height: 100%;
+
+}
+header{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    justify-items: center;
+    width: 100%;
+    background-color: rgb(4, 5, 14) ; 
+    display: grid;
+    grid-template: 1fr/ auto auto;
+
+
 }
 ul{
     padding: 0;
@@ -43,16 +62,26 @@ button:hover{
     background-color: rgb(17, 21, 39);
     color: white;
 }
+/*top nav*/
+#top-nav{
+ display: flex;
+ flex-direction: row;
+ justify-self: end;
+ grid-area: nav-options;
+}
+#nav-btn{
+ display: none;
+ grid-area: nav-btn;
+ justify-self: end;
+}
 .main-container{
     display: flex;
     flex-direction: column;
     gap: 20px;
     background-color: rgb(1, 1, 15);
-
     border-radius: 25px;
     padding: 30px;
     align-items: center;
-    box-shadow: 0px 0px 24px 0px rgb(17, 18, 22);
     min-width: 480px;
 
 }
@@ -75,11 +104,12 @@ a:hover{
     outline: 1px solid rgb(164, 165, 168);
 }
 
-/*message board and cards*/
+/*message board and cards and utilities*/
 .message-board{
     display: flex;
     flex-direction: column;
-    gap: 20px;    
+    gap: 20px; 
+    margin-bottom: 100px;   
 }
 .msg-card{
     margin-bottom: 20px;
@@ -96,26 +126,52 @@ a:hover{
     'date delete';
 }
 #add-msg{
-    outline: 1px solid white;
+
     position: fixed;
     left: 0px;
     bottom: 0px;
     width: 100vw;
     padding: 20px 0px 20px 0px;
-    background-color: rgb(1, 1, 15) ;    
+    background-color: rgb(1, 1, 15) ;
+    display: grid;
+    grid-template: 1fr  1fr /1fr 3fr; 
+    align-content: center;
+    
+    grid-template-areas:
+    'membership-btn msg-utl' 
+    'logout-utl msg-utl'
+    ;
 }
 .add-msg-form{
     min-width: 450px;
     display: grid;
-    grid-template: 1fr 1fr/ 1fr 2fr 1fr 1fr;
+    grid-template: 1fr 1fr/  2fr 1fr ;
     grid-template-areas:
-    '. msg-title msg-send .'
-    '. msg-content msg-send .'
+    ' msg-title msg-send '
+    ' msg-content msg-send '
     ;
+    grid-area: msg-utl;
 }
 .send-msg-btn{
     border-radius: 60px;
     width: auto;
+}
+#admin-mode{
+    justify-self: center;
+    padding: 20px;
+}
+/* log actions*/
+.log-action{
+
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    left: 0px;
+    bottom: 0px;
+    width: 100vw;
+    padding: 20px 0px 20px 0px;
+    background-color: rgb(1, 1, 15) ; 
 }
 /*register form*/
 
@@ -130,6 +186,14 @@ a:hover{
     gap: 10px;
     padding: 20px;
     justify-self: center;
+            grid-template-areas:
+        'fn-l fn-i'
+        'ln-l ln-i'
+        'u-l u-i'
+        'p-l p-i'
+        'cp-l cp-i'
+        'sing-up-btn cancel-signup-btn'
+        ;
 
 }
 
@@ -142,6 +206,7 @@ a:hover{
     outline-offset: 1px;
 }
 /*log in*/
+
 .log-in-form{
     background-color: rgb(1, 1, 15);
     box-shadow: 0px 0px 24px 0px rgb(17, 18, 22);
@@ -152,6 +217,76 @@ a:hover{
     min-width: 480px;
     gap: 10px;
     padding: 20px;
-    justify-self: center;   
+    align-self: center;
+    
 
 }
+/*for phone*/
+@media (max-width: 700px) {
+    /*top nav*/
+    header{
+        grid-template: 2fr/ auto;
+        grid-template-areas: 
+        'nav-title nav-btn'
+        'nav-options nav-options'
+        ;
+    }
+    #top-nav{
+        display: none;
+        justify-self: center;
+    }
+    #nav-btn{
+        display: block;
+        align-self: center;
+        justify-self: center;
+    }
+    /*main body*/
+    .main-container{
+        min-width: 370px;
+        padding: 0px;
+    }
+    .msg-card{
+        margin-bottom: 0px;
+        margin: 30px;
+    }    
+    #add-msg{
+        height: min-content;
+        grid-template-areas:
+        'membership-btn msg-utl' 
+        'logout-utl msg-utl'
+        ;
+    }
+    .add-msg-form{
+        padding: 0px 15px 0px 15px;
+    }
+    /*log handelling*/
+    .log-in-form{
+        min-width: 380px;
+        grid-template: repeat(5,1fr)/ 1fr 1fr;
+        grid-template-areas:
+        'U-label U-label'
+        'U-input U-input'
+        'P-label P-label'
+        'P-input P-input'
+        'log-in-btn log-in-cancel'
+        ;
+    }
+    .sign-up-form{
+        min-width: 380px;
+        grid-template: repeat(11,1fr)/ repeat(2,1fr);
+        grid-template-areas:
+        'fn-l fn-l'
+        'fn-i fn-i'
+        'ln-l ln-l'
+        'ln-i ln-i'
+        'u-l u-l'
+        'u-i u-i'
+        'p-l p-l'
+        'p-i p-i'
+        'cp-l cp-l'
+        'cp-i cp-i'
+        'sing-up-btn cancel-signup-btn'
+        ;
+    }
+}
+

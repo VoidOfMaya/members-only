@@ -8,15 +8,45 @@
     <title>Document</title>
 </head>
 <body>
-
+    <header>    
         <% if(user){%>
-            <h1>welcome back <%= user.first_name %></h1>
+            <h2 style="grid-area: nav-title;">welcome back <%= user.first_name %></h2>
         <% } else { %>
-            <h1> welcom guest, please log in</h1>
+            <h2 style="grid-area: nav-title;"> Guest mode</h2>
         <%}%>
-    <div class="main-container">        
+        <button id="nav-btn" style="font-size: 24px;">☰</button>
+        <nav aria-label="navigation" id="top-nav">
+            <% if(!user){%>
+                <a href="/log-in">Log in</a> 
+                <a href="/sign-up">register</a>  
+            <% } %>
+            <% if(user){ %>
+                <% if(user.member_status){ %>
+                <form method="post" action="/auth/acticate-admin" id="admin-mode">
+                    <button>
+                        <%= !user.is_admin ? 'turn admin mode on' : 'turn admin mode off' %>
+                    </button>
+                </form>     
+                <% } else { %>
+                    <button id="membership-btn" style="grid-area: membership-btn; justify-self: center;">activate membership</button>
+                <% } %>
+                <a href="/auth/log-out" style="grid-area: logout-utl;">Log out</a>
+            <% } %>
+            
+            </nav>
+    </header>
+    <!--header script-->
+    <script>
+        const navBtn = document.getElementById('nav-btn');
+        const navOptions = document.getElementById('top-nav');
+        navBtn.addEventListener('click',()=>{
+            navOptions.style.display === 'none'?  navOptions.style.display = 'block' : navOptions.style.display = 'none';
+        })
+        navBtn.addEventListener('')
+         
+    </script>
+    <main class="main-container">        
         <section class="message-board">
-        <header>Message board</header>
         <ul style="list-style: none;">
 
                 <% if( messages === undefined || messages.length === 0){  %>
@@ -52,34 +82,14 @@
                 <% } %>
             </ul>
         </section>
-        <section class="log">
-            <% if(user){%>
-
-            <% } else { %>
-                <a href="/log-in">Log in</a> 
-                <a href="/sign-up">register</a>                
-            <%}%>
-
-        </section>
         <% if(user){ %>
         <section id="add-msg">
             <form method="post" action="/msg/send" class="add-msg-form">
                 <input style="grid-area: msg-title;" type="text" name="title" placeholder="title goes here" maxlength="15" minlength="2" required >
                 <textarea style="grid-area: msg-content;" name="content" placeholder="your message here ..." maxlength="250" minlength="1"required></textarea>
-                <button class="send-msg-btn" style="grid-area: msg-send;">send</button>
+                <button class="send-msg-btn" style="grid-area: msg-send; justify-self: center; align-self: center; padding: 30px;">send</button>
             </form>
-            <a href="/auth/log-out">Log out</a>
-            <% if(user.member_status){ %>
-            <form method="post" action="/auth/acticate-admin">
-                <button>
-                    <%= !user.is_admin ? 'turn admin mode on' : 'turn admin mode off' %>
-                </button>
-            </form>
-            <% } %>
-            <% if(user.member_status === false ){ %>
-                <button id="membership-btn">activate membership</button>
-                <a href="/auth/log-out">Log out</a>
-            <% } %>
+
         </section>
         <% } %>
         <% if(user){ %>
@@ -108,6 +118,6 @@
         </script>
         <% } %>
 
-    </div>
+    </main>
 </body>
 </html>
