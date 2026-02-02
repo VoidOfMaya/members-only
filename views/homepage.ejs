@@ -29,7 +29,15 @@
                             </div>
                             <div style="grid-area: title; color: rgb(164, 165, 168);"><%= msg.title?  msg.title : ''%></div>
                             <p style="grid-area: content; font-size: 18px;"><%= msg.content %></p>
-                            <div style="grid-area: date; color: rgb(164, 165, 168); font-size: 13px;"><%= msg.posted_on?  msg.posted_on : "----" %></div>
+                            <div style="grid-area: date; color: rgb(164, 165, 168); font-size: 13px;">
+                                <%= msg.posted_on?  msg.posted_on.toLocaleString('en-GB', {
+                                    day: '2-digit',
+                                    month: 'short',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                }) :
+                                "----" %></div>
                             <% if(user && user.member_status && user.is_admin){ %>
                             <div class="msg-delete" style="grid-area: delete;">
                                 <form method="post" action="/msg/delete">
