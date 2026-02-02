@@ -41,7 +41,7 @@ async function login(req, res) {
     }catch(err){
         console.log(err);
     }
-    console.log(req.body);
+
 }
 async function logout(req, res) {
     req.logout(err => {

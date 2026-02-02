@@ -35,9 +35,8 @@ async function deleteMsg(req, res) {
         console.lod(errors)
         res.redirect('/');
     }
-    const msgId = Number(matchedData(req))
-    console.log(msgId);
-    //await postgres.deleteMsg(msgId);
+    const data= matchedData(req);
+    await postgres.deleteMsg(Number(data.msgId));
     res.redirect('/');
 }
 module.exports={

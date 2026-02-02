@@ -18,12 +18,11 @@
         <section class="message-board">
         <header>Message board</header>
         <ul style="list-style: none;">
-                <% console.log(messages) %>
+
                 <% if( messages === undefined || messages.length === 0){  %>
                     <li>no messages currently</li>
                 <% } else{ %>
                     <% messages.forEach(msg =>{ %>
-                        <% console.log(msg) %>
                         <li class="msg-card">
                             <div>
                                 @<div style="grid-area: user; color: rgb(164, 165, 168); display: inline;"><%= msg.username? msg.username : '----' %></div>
